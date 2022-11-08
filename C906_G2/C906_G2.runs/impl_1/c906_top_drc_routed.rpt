@@ -1,0 +1,292 @@
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
+| Date         : Tue Nov  8 21:57:23 2022
+| Host         : LAPTOP-NVLKKFTU running 64-bit major release  (build 9200)
+| Command      : report_drc -file c906_top_drc_routed.rpt -pb c906_top_drc_routed.pb -rpx c906_top_drc_routed.rpx
+| Design       : c906_top
+| Device       : xc7k325tffg900-2
+| Speed File   : -2
+| Design State : Fully Routed
+------------------------------------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+           Ruledeck: default
+             Max violations: <unlimited>
+             Violations found: 47
++-----------+----------+-----------------------------------------------------+------------+
+| Rule      | Severity | Description                                         | Violations |
++-----------+----------+-----------------------------------------------------+------------+
+| CFGBVS-1  | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties | 1          |
+| CHECK-3   | Warning  | Report rule limit reached                           | 2          |
+| NSTD-1    | Warning  | Unspecified I/O Standard                            | 1          |
+| PDRC-153  | Warning  | Gated clock check                                   | 1          |
+| PLCK-12   | Warning  | Clock Placer Checks                                 | 1          |
+| REQP-1839 | Warning  | RAMB36 async control check                          | 20         |
+| REQP-1840 | Warning  | RAMB18 async control check                          | 20         |
+| UCIO-1    | Warning  | Unconstrained Logical Port                          | 1          |
++-----------+----------+-----------------------------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+CFGBVS-1#1 Warning
+Missing CFGBVS and CONFIG_VOLTAGE Design Properties  
+Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_design.  Configuration bank voltage select (CFGBVS) must be set to VCCO or GND, and CONFIG_VOLTAGE must be set to the correct configuration voltage, in order to determine the I/O voltage support for the pins in bank 0.  It is suggested to specify these either using the 'Edit Device Properties' function in the GUI or directly in the XDC file using the following syntax:
+
+ set_property CFGBVS value1 [current_design]
+ #where value1 is either VCCO or GND
+
+ set_property CONFIG_VOLTAGE value2 [current_design]
+ #where value2 is the voltage provided to configuration bank 0
+
+Refer to the device configuration user guide for more information.
+Related violations: <none>
+
+CHECK-3#1 Warning
+Report rule limit reached  
+REQP-1839 rule limit reached: 20 violations have been found.
+Related violations: <none>
+
+CHECK-3#2 Warning
+Report rule limit reached  
+REQP-1840 rule limit reached: 20 violations have been found.
+Related violations: <none>
+
+NSTD-1#1 Warning
+Unspecified I/O Standard  
+1 out of 18 logical ports use I/O standard (IOSTANDARD) value 'DEFAULT', instead of a user assigned specific value. This may cause I/O contention or incompatibility with the board power or connectivity affecting performance, signal integrity or in extreme cases cause damage to the device or the components to which it is connected. To correct this violation, specify all I/O standards. This design will fail to generate a bitstream unless all logical ports have a user specified I/O standard value defined. To allow bitstream creation with unspecified I/O standard values (not recommended), use this command: set_property SEVERITY {Warning} [get_drc_checks NSTD-1].  NOTE: When using the Vivado Runs infrastructure (e.g. launch_runs Tcl command), add this command to a .tcl file and add that file as a pre-hook for write_bitstream step for the implementation run. Problem ports: jrst_b.
+Related violations: <none>
+
+PDRC-153#1 Warning
+Gated clock check  
+Net u_soc/x_apb/x_apb_bridge/E[0] is a gated clock net sourced by a combinational pin u_soc/x_apb/x_apb_bridge/prdata_reg[2]_i_1/O, cell u_soc/x_apb/x_apb_bridge/prdata_reg[2]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PLCK-12#1 Warning
+Clock Placer Checks  
+Poor placement for routing between an IO pin and BUFG. 
+Resolution: Poor placement of an IO pin and a BUFG has resulted in the router using a non-dedicated path between the two.  There are several things that could trigger this DRC, each of which can cause unpredictable clock insertion delays that result in poor timing.  This DRC could be caused by any of the following: (a) a clock port was placed on a pin that is not a CCIO-pin (b)the BUFG has not been placed in the same half of the device or SLR as the CCIO-pin (c) a single ended clock has been placed on the N-Side of a differential pair CCIO-pin.
+ This is normally an ERROR but the CLOCK_DEDICATED_ROUTE constraint is set to FALSE allowing your design to continue. The use of this override is highly discouraged as it may lead to very poor timing results. It is recommended that this error condition be corrected in the design.
+
+	jtg_clk_IBUF_inst (IBUF.O) is locked to AK28
+	jtg_clk_IBUF_BUFG_inst (BUFG.I) is provisionally placed by clockplacer on BUFGCTRL_X0Y3
+
+Related violations: <none>
+
+REQP-1839#1 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ADDRARDADDR[6] (net: u_soc/x_axi2ahb/rptr_reg[0]) which is driven by a register (u_soc/x_axi2ahb/rptr_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#2 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ADDRARDADDR[7] (net: u_soc/x_axi2ahb/rptr_reg[1]) which is driven by a register (u_soc/x_axi2ahb/rptr_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#3 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ADDRARDADDR[8] (net: u_soc/x_axi2ahb/rptr_reg[2]) which is driven by a register (u_soc/x_axi2ahb/rptr_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#4 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ADDRBWRADDR[6] (net: u_soc/x_axi2ahb/wptr_reg[0]) which is driven by a register (u_soc/x_axi2ahb/wptr_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#5 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ADDRBWRADDR[7] (net: u_soc/x_axi2ahb/wptr_reg[1]) which is driven by a register (u_soc/x_axi2ahb/wptr_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#6 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ADDRBWRADDR[8] (net: u_soc/x_axi2ahb/wptr_reg[2]) which is driven by a register (u_soc/x_axi2ahb/wptr_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#7 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ENARDEN (net: u_soc/x_axi2ahb/db_rd) which is driven by a register (u_soc/x_ahb/busy_s1_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#8 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ENARDEN (net: u_soc/x_axi2ahb/db_rd) which is driven by a register (u_soc/x_ahb/busy_s2_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#9 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ENARDEN (net: u_soc/x_axi2ahb/db_rd) which is driven by a register (u_soc/x_ahb/busy_s3_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#10 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ENARDEN (net: u_soc/x_axi2ahb/db_rd) which is driven by a register (u_soc/x_apb/x_apb_bridge/apb_harb_hready_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#11 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ENARDEN (net: u_soc/x_axi2ahb/db_rd) which is driven by a register (u_soc/x_axi2ahb/cur_st_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#12 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ENARDEN (net: u_soc/x_axi2ahb/db_rd) which is driven by a register (u_soc/x_axi2ahb/cur_st_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#13 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ENARDEN (net: u_soc/x_axi2ahb/db_rd) which is driven by a register (u_soc/x_axi2ahb/cur_st_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#14 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ENARDEN (net: u_soc/x_axi2ahb/db_rd) which is driven by a register (u_soc/x_axi2ahb/cur_st_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#15 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ENARDEN (net: u_soc/x_axi2ahb/db_rd) which is driven by a register (u_soc/x_axi2ahb/cur_st_reg[4]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#16 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ENARDEN (net: u_soc/x_axi2ahb/db_rd) which is driven by a register (u_soc/x_axi2ahb/cur_st_reg[5]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#17 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ENARDEN (net: u_soc/x_axi2ahb/db_rd) which is driven by a register (u_soc/x_axi2ahb/cur_st_reg[6]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#18 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ENARDEN (net: u_soc/x_axi2ahb/db_rd) which is driven by a register (u_soc/x_axi2ahb/cur_st_reg[7]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#19 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ENARDEN (net: u_soc/x_axi2ahb/db_rd) which is driven by a register (u_soc/x_axi2ahb/cur_st_reg[8]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#20 Warning
+RAMB36 async control check  
+The RAMB36E1 u_soc/x_axi2ahb/entry_data_reg_0 has an input control pin u_soc/x_axi2ahb/entry_data_reg_0/ENARDEN (net: u_soc/x_axi2ahb/db_rd) which is driven by a register (u_soc/x_axi_err/rvalid_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#1 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_biu_top/x_aq_biu_read_channel/rbuf_vld_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#2 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_biu_top/x_aq_biu_read_channel/rid_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#3 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_biu_top/x_aq_biu_read_channel/rid_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#4 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_biu_top/x_aq_biu_read_channel/rid_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#5 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_biu_top/x_aq_biu_read_channel/rid_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#6 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_biu_top/x_aq_biu_read_channel/rlast_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#7 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_biu_top/x_aq_biu_read_channel/rresp_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#8 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_sysio_top/x_aq_sysio_core0/clint_core_ms_int_cpu_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#9 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_sysio_top/x_aq_sysio_core0/clint_core_mt_int_cpu_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#10 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_sysio_top/x_aq_sysio_core0/clint_core_ss_int_cpu_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#11 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_sysio_top/x_aq_sysio_core0/clint_core_st_int_cpu_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#12 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_sysio_top/x_aq_sysio_core0/plic_core_me_int_cpu_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#13 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_sysio_top/x_aq_sysio_core0/plic_core_se_int_cpu_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#14 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_cp0_top/x_aq_cp0_regs/x_aq_cp0_ext_csr/cindex_index_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#15 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_cp0_top/x_aq_cp0_regs/x_aq_cp0_ext_csr/cindex_rid_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#16 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_cp0_top/x_aq_cp0_special/x_aq_cp0_lpmd/FSM_onehot_cur_state_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#17 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_cp0_top/x_aq_cp0_special/x_aq_cp0_lpmd/lpmd_b_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#18 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_cp0_top/x_aq_cp0_special/x_aq_cp0_rst_ctrl/FSM_onehot_icache_cur_state_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#19 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_ipack/x_aq_ifu_ipack_entry0/entry_inst_reg[0]_replica_6) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1840#20 Warning
+RAMB18 async control check  
+The RAMB18E1 u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg has an input control pin u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/mem_reg/ADDRARDADDR[12] (net: u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_icache/x_aq_ifu_icache_data_array/x_aq_spsram_2048x32_0/x_aq_f_spsram_2048x32/ram0/ADDRARDADDR[9]) which is driven by a register (u_soc/x_cpu_sub_system_axi/x_c906_wrapper/x_cpu_top/x_aq_top_0/x_aq_core/x_aq_ifu_top/x_aq_ifu_ipack/x_aq_ifu_ipack_entry1/entry_vld_reg_replica_3) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+UCIO-1#1 Warning
+Unconstrained Logical Port  
+1 out of 18 logical ports have no user assigned specific location constraint (LOC). This may cause I/O contention or incompatibility with the board power or connectivity affecting performance, signal integrity or in extreme cases cause damage to the device or the components to which it is connected. To correct this violation, specify all pin locations. This design will fail to generate a bitstream unless all logical ports have a user specified site LOC constraint defined.  To allow bitstream creation with unspecified pin locations (not recommended), use this command: set_property SEVERITY {Warning} [get_drc_checks UCIO-1].  NOTE: When using the Vivado Runs infrastructure (e.g. launch_runs Tcl command), add this command to a .tcl file and add that file as a pre-hook for write_bitstream step for the implementation run.  Problem ports: jrst_b.
+Related violations: <none>
+
+
