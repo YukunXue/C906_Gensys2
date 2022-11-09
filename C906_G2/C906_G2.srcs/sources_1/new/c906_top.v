@@ -58,8 +58,23 @@ module c906_top(
        .IB  (clk_n)
     );
 
+    wire CLK_50M;
+    wire CLK_100M;
+    
+    clk_wiz_0 
+ (
+
+    .clk_out1(CLK_50M),//50M
+    .clk_out2(),//80M
+    .clk_out3(CLK_100M),//100M
+
+    .resetn(rst_b),
+    .locked(),
+    .clk_in1(clk)
+ );
+
     soc u_soc(
-      .i_pad_clk           ( clk                  ),
+      .i_pad_clk           ( CLK_50M             ),
       .b_pad_gpio_porta    ( b_pad_gpio_porta     ),
       .i_pad_jtg_trst_b    ( jrst_b               ),
       .i_pad_jtg_nrst_b    ( rst_b                ),
