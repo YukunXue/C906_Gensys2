@@ -134,9 +134,11 @@ OPTRACE "set parameters" START { }
   set_property parent.project_path E:/G2_C906/C906_G2/C906_G2.xpr [current_project]
   set_property ip_output_repo E:/G2_C906/C906_G2/C906_G2.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
+  set_property XPM_LIBRARIES XPM_CDC [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet E:/G2_C906/C906_G2/C906_G2.runs/synth_1/c906_top.dcp
+  read_ip -quiet e:/G2_C906/C906_G2/C906_G2.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
 OPTRACE "read constraints: implementation" START { }
   read_xdc E:/G2_C906/C906_G2/C906_G2.srcs/constrs_1/new/G2_c906.xdc
 OPTRACE "read constraints: implementation" END { }
@@ -320,6 +322,7 @@ OPTRACE "Write Bitstream: pre hook" START { }
 OPTRACE "Write Bitstream: pre hook" END { }
 OPTRACE "read constraints: write_bitstream" START { }
 OPTRACE "read constraints: write_bitstream" END { }
+  set_property XPM_LIBRARIES XPM_CDC [current_project]
   catch { write_mem_info -force -no_partial_mmi c906_top.mmi }
 OPTRACE "write_bitstream setup" END { }
 OPTRACE "write_bitstream" START { }

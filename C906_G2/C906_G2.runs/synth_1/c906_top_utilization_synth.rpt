@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Tue Nov  8 21:32:03 2022
+| Date         : Wed Nov  9 14:02:18 2022
 | Host         : LAPTOP-NVLKKFTU running 64-bit major release  (build 9200)
 | Command      : report_utilization -file c906_top_utilization_synth.rpt -pb c906_top_utilization_synth.pb
 | Design       : c906_top
@@ -30,13 +30,13 @@ Table of Contents
 +----------------------------+-------+-------+-----------+-------+
 |          Site Type         |  Used | Fixed | Available | Util% |
 +----------------------------+-------+-------+-----------+-------+
-| Slice LUTs*                | 73155 |     0 |    203800 | 35.90 |
-|   LUT as Logic             | 72901 |     0 |    203800 | 35.77 |
+| Slice LUTs*                | 72456 |     0 |    203800 | 35.55 |
+|   LUT as Logic             | 72202 |     0 |    203800 | 35.43 |
 |   LUT as Memory            |   254 |     0 |     64000 |  0.40 |
 |     LUT as Distributed RAM |   254 |     0 |           |       |
 |     LUT as Shift Register  |     0 |     0 |           |       |
-| Slice Registers            | 29881 |     0 |    407600 |  7.33 |
-|   Register as Flip Flop    | 29877 |     0 |    407600 |  7.33 |
+| Slice Registers            | 29883 |     0 |    407600 |  7.33 |
+|   Register as Flip Flop    | 29879 |     0 |    407600 |  7.33 |
 |   Register as Latch        |     4 |     0 |    407600 | <0.01 |
 | F7 Muxes                   |  3269 |     0 |    101900 |  3.21 |
 | F8 Muxes                   |  1131 |     0 |     50950 |  2.22 |
@@ -57,7 +57,7 @@ Table of Contents
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 666   |          Yes |           - |          Set |
-| 15261 |          Yes |           - |        Reset |
+| 15263 |          Yes |           - |        Reset |
 | 208   |          Yes |         Set |            - |
 | 13746 |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
@@ -121,7 +121,7 @@ Table of Contents
 +------------+------+-------+-----------+-------+
 |  Site Type | Used | Fixed | Available | Util% |
 +------------+------+-------+-----------+-------+
-| BUFGCTRL   |    4 |     0 |        32 | 12.50 |
+| BUFGCTRL   |    3 |     0 |        32 |  9.38 |
 | BUFIO      |    0 |     0 |        40 |  0.00 |
 | MMCME2_ADV |    0 |     0 |        10 |  0.00 |
 | PLLE2_ADV  |    0 |     0 |        10 |  0.00 |
@@ -155,17 +155,17 @@ Table of Contents
 +----------+-------+---------------------+
 | Ref Name |  Used | Functional Category |
 +----------+-------+---------------------+
-| LUT6     | 43277 |                 LUT |
-| FDCE     | 15257 |        Flop & Latch |
-| LUT5     | 13838 |                 LUT |
+| LUT6     | 43575 |                 LUT |
+| FDCE     | 15259 |        Flop & Latch |
 | FDRE     | 13746 |        Flop & Latch |
+| LUT5     | 13649 |                 LUT |
 | LUT4     |  9707 |                 LUT |
-| LUT3     |  8108 |                 LUT |
-| LUT2     |  4483 |                 LUT |
+| LUT3     |  8020 |                 LUT |
+| LUT2     |  4549 |                 LUT |
 | MUXF7    |  3269 |               MuxFx |
 | CARRY4   |  2299 |          CarryLogic |
 | MUXF8    |  1131 |               MuxFx |
-| LUT1     |   719 |                 LUT |
+| LUT1     |   718 |                 LUT |
 | FDPE     |   666 |        Flop & Latch |
 | RAMB18E1 |   298 |        Block Memory |
 | RAMS64E  |   254 |  Distributed Memory |
@@ -174,7 +174,7 @@ Table of Contents
 | IBUF     |    14 |                  IO |
 | OBUFT    |     8 |                  IO |
 | LDCE     |     4 |        Flop & Latch |
-| BUFG     |     4 |               Clock |
+| BUFG     |     3 |               Clock |
 | OBUF     |     2 |                  IO |
 | IBUFDS   |     1 |                  IO |
 +----------+-------+---------------------+
@@ -183,9 +183,11 @@ Table of Contents
 8. Black Boxes
 --------------
 
-+----------+------+
-| Ref Name | Used |
-+----------+------+
++-----------+------+
+|  Ref Name | Used |
++-----------+------+
+| clk_wiz_0 |    1 |
++-----------+------+
 
 
 9. Instantiated Netlists

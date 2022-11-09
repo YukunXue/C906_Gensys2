@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Tue Nov  8 21:16:36 2022
-# Process ID: 24816
+# Start of session at: Wed Nov  9 13:50:59 2022
+# Process ID: 26500
 # Current directory: E:/G2_C906/C906_G2/C906_G2.runs/synth_1
 # Command line: vivado.exe -log c906_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source c906_top.tcl
 # Log file: E:/G2_C906/C906_G2/C906_G2.runs/synth_1/c906_top.vds

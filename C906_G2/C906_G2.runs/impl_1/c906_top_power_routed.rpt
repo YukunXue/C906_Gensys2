@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date             : Tue Nov  8 21:58:46 2022
+| Date             : Wed Nov  9 14:14:57 2022
 | Host             : LAPTOP-NVLKKFTU running 64-bit major release  (build 9200)
 | Command          : report_power -file c906_top_power_routed.rpt -pb c906_top_power_summary_routed.pb -rpx c906_top_power_routed.rpx
 | Design           : c906_top
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 2.229        |
+| Total On-Chip Power (W)  | 0.780        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 2.030        |
-| Device Static (W)        | 0.198        |
+| Dynamic (W)              | 0.593        |
+| Device Static (W)        | 0.188        |
 | Effective TJA (C/W)      | 1.8          |
-| Max Ambient (C)          | 81.0         |
-| Junction Temperature (C) | 29.0         |
+| Max Ambient (C)          | 83.6         |
+| Junction Temperature (C) | 26.4         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,20 +52,21 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.234 |        3 |       --- |             --- |
-| Slice Logic              |     0.165 |   119068 |       --- |             --- |
-|   LUT as Logic           |     0.156 |    73341 |    203800 |           35.99 |
-|   CARRY4                 |     0.006 |     2299 |     50950 |            4.51 |
-|   Register               |     0.003 |    29921 |    407600 |            7.34 |
+| Clocks                   |     0.060 |        6 |       --- |             --- |
+| Slice Logic              |     0.044 |   119076 |       --- |             --- |
+|   LUT as Logic           |     0.041 |    71000 |    203800 |           34.84 |
+|   CARRY4                 |     0.002 |     2299 |     50950 |            4.51 |
+|   Register               |    <0.001 |    29882 |    407600 |            7.33 |
 |   F7/F8 Muxes            |    <0.001 |     4400 |    203800 |            2.16 |
 |   BUFG                   |    <0.001 |        2 |        32 |            6.25 |
 |   LUT as Distributed RAM |    <0.001 |      254 |     64000 |            0.40 |
-|   Others                 |     0.000 |     2134 |       --- |             --- |
-| Signals                  |     0.363 |    93940 |       --- |             --- |
-| Block RAM                |     1.261 |      343 |       445 |           77.08 |
-| I/O                      |     0.006 |       18 |       500 |            3.60 |
-| Static Power             |     0.198 |          |           |                 |
-| Total                    |     2.229 |          |           |                 |
+|   Others                 |     0.000 |     2136 |       --- |             --- |
+| Signals                  |     0.072 |    93942 |       --- |             --- |
+| Block RAM                |     0.316 |      343 |       445 |           77.08 |
+| MMCM                     |     0.096 |        1 |        10 |           10.00 |
+| I/O                      |     0.005 |       18 |       500 |            3.60 |
+| Static Power             |     0.188 |          |           |                 |
+| Total                    |     0.780 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -75,16 +76,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     2.011 |       1.918 |      0.093 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.031 |       0.002 |      0.029 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.550 |       0.466 |      0.084 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.083 |       0.055 |      0.028 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.121 |       0.107 |      0.014 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.040 |       0.027 |      0.013 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTVccaux |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -129,11 +130,14 @@ Table of Contents
 2.2 Clock Constraints
 ---------------------
 
-+-------------+--------+-----------------+
-| Clock       | Domain | Constraint (ns) |
-+-------------+--------+-----------------+
-| sys_clk_pin | clk_p  |             5.0 |
-+-------------+--------+-----------------+
++--------------------+----------------------------------------+-----------------+
+| Clock              | Domain                                 | Constraint (ns) |
++--------------------+----------------------------------------+-----------------+
+| clk_out1_clk_wiz_0 | nolabel_line65/inst/clk_out1_clk_wiz_0 |            20.0 |
+| clkfbout_clk_wiz_0 | nolabel_line65/inst/clkfbout_clk_wiz_0 |             5.0 |
+| sys_clk_pin        | clk                                    |             5.0 |
+| sys_clk_pin        | clk_p                                  |             5.0 |
++--------------------+----------------------------------------+-----------------+
 
 
 3. Detailed Reports
@@ -145,45 +149,35 @@ Table of Contents
 +-------------------------------+-----------+
 | Name                          | Power (W) |
 +-------------------------------+-----------+
-| c906_top                      |     2.030 |
-|   u_soc                       |     2.022 |
-|     x_apb                     |     0.013 |
-|       x_apb_bridge            |     0.002 |
-|       x_stimer                |     0.004 |
-|       x_timer                 |     0.004 |
-|       x_uart                  |     0.001 |
-|     x_axi2ahb                 |     0.002 |
-|     x_axi_fifo                |     0.022 |
-|       x_counter_entry0        |     0.002 |
-|       x_counter_entry1        |     0.002 |
-|       x_counter_entry2        |     0.002 |
-|       x_counter_entry3        |     0.002 |
-|       x_counter_entry4        |     0.002 |
-|       x_counter_entry5        |     0.002 |
-|       x_counter_entry6        |     0.002 |
-|       x_counter_entry7        |     0.002 |
-|     x_axi_interconnect        |     0.002 |
-|     x_axi_slave128            |     0.504 |
-|       x_f_spsram_524288x128_L |     0.501 |
-|     x_cpu_sub_system_axi      |     1.240 |
-|       x_c906_wrapper          |     1.240 |
-|     x_mem_ctrl                |     0.240 |
-|       ram0                    |     0.015 |
-|       ram1                    |     0.015 |
-|       ram10                   |     0.015 |
-|       ram11                   |     0.015 |
-|       ram12                   |     0.015 |
-|       ram13                   |     0.015 |
-|       ram14                   |     0.015 |
-|       ram15                   |     0.015 |
-|       ram2                    |     0.015 |
-|       ram3                    |     0.015 |
-|       ram4                    |     0.015 |
-|       ram5                    |     0.015 |
-|       ram6                    |     0.015 |
-|       ram7                    |     0.015 |
-|       ram8                    |     0.015 |
-|       ram9                    |     0.015 |
+| c906_top                      |     0.593 |
+|   nolabel_line65              |     0.098 |
+|     inst                      |     0.098 |
+|   u_soc                       |     0.489 |
+|     x_apb                     |     0.003 |
+|       x_stimer                |     0.001 |
+|       x_timer                 |     0.001 |
+|     x_axi_fifo                |     0.005 |
+|     x_axi_slave128            |     0.119 |
+|       x_f_spsram_524288x128_L |     0.118 |
+|     x_cpu_sub_system_axi      |     0.299 |
+|       x_c906_wrapper          |     0.299 |
+|     x_mem_ctrl                |     0.060 |
+|       ram0                    |     0.004 |
+|       ram1                    |     0.004 |
+|       ram10                   |     0.004 |
+|       ram11                   |     0.004 |
+|       ram12                   |     0.004 |
+|       ram13                   |     0.004 |
+|       ram14                   |     0.004 |
+|       ram15                   |     0.004 |
+|       ram2                    |     0.004 |
+|       ram3                    |     0.004 |
+|       ram4                    |     0.004 |
+|       ram5                    |     0.004 |
+|       ram6                    |     0.004 |
+|       ram7                    |     0.004 |
+|       ram8                    |     0.004 |
+|       ram9                    |     0.004 |
 +-------------------------------+-----------+
 
 
